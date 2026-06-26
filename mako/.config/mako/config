@@ -1,0 +1,27 @@
+sort=-time
+layer=overlay
+background-color=#121212
+width=300
+height=110
+border-size=2
+border-color=#e68e0d
+border-radius=8
+icons=1
+max-icon-size=48
+default-timeout=5000
+ignore-timeout=0
+font=JetBrainsMono Nerd Font 13
+
+anchor=bottom-right
+margin=10
+
+[urgency=low]
+border-color=#8a8a8d
+
+[urgency=normal]
+border-color=#e68e0d
+
+[urgency=critical]
+border-color=#d35f5f
+background-color=#1a1a1a
+default-timeout=0

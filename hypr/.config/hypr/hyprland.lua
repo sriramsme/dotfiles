@@ -52,7 +52,10 @@ local menu        = "hyprlauncher"
 hl.on("hyprland.start", function ()
   hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
   hl.exec_cmd(terminal)
-  hl.exec_cmd("waybar & hyprpaper & zen-browser")
+  hl.exec_cmd("waybar")
+  hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("zen-browser")
+  hl.exec_cmd("mako")
 end)
 
 
@@ -92,8 +95,8 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 5,
-        gaps_out = 20,
+        gaps_in  = 2,
+        gaps_out = 10,
 
         border_size = 2,
 
@@ -312,8 +315,15 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
+-- Screenshots
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("bash -c 'sleep 0.1 && grimblast --notify copy area'"))
+hl.bind("SUPER + SHIFT + F", hl.dsp.exec_cmd("grimblast --notify copy screen"))
 
---------------------------------
+-- Clipboard
+hl.exec_cmd("wl-paste --type text --watch cliphist store")
+hl.exec_cmd("wl-paste --type image --watch cliphist store")
+hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("bash -c 'cliphist list | wofi --dmenu | cliphist decode | wl-copy'"))
+
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
