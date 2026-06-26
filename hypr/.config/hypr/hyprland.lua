@@ -51,6 +51,7 @@ local menu        = "hyprlauncher"
 --
 hl.on("hyprland.start", function ()
   hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
+  hl.exec_cmd("hypridle")
   hl.exec_cmd(terminal)
   hl.exec_cmd("waybar")
   hl.exec_cmd("hyprpaper")
@@ -323,6 +324,11 @@ hl.bind("SUPER + SHIFT + F", hl.dsp.exec_cmd("grimblast --notify copy screen"))
 hl.exec_cmd("wl-paste --type text --watch cliphist store")
 hl.exec_cmd("wl-paste --type image --watch cliphist store")
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("bash -c 'cliphist list | wofi --dmenu | cliphist decode | wl-copy'"))
+
+-- Lock
+hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
+
+
 
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
