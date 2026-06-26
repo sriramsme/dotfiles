@@ -4,7 +4,7 @@
 add_newline = false
 
 format = """
-$directory$git_branch$git_status$nodejs$python$rust$golang$cmd_duration$status $character"""
+$directory$git_branch$git_status$cmd_duration$status $character"""
 
 [directory]
 truncation_length = 3

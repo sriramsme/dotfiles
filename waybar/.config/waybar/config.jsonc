@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": [],
-    "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock"],
+    "modules-right": ["cpu", "pulseaudio", "backlight", "network", "battery", "clock"],
 
     "hyprland/workspaces": {
         "format": "{id}",
@@ -17,17 +17,17 @@
         "max-length": 50
     },
 
-    "cpu": {
-        "interval": 5,
-        "format": "󰻠 {usage}%"
-    },
-
     "pulseaudio": {
         "format": "󰕾 {volume}%",
         "format-muted": "󰖁 muted",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "scroll-step": 5
     },
+    "cpu": {
+        "interval": 5,
+        "format": "󰻠 {usage}%"
+    },
+
 
     "backlight": {
         "format": "󰃞 {percent}%",
