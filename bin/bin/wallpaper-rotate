@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+INTERVAL=3600
+
+set_wallpaper() {
+    wallpaper=$(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | shuf -n 1)
+    if [[ -n "$wallpaper" ]]; then
+        hyprctl hyprpaper preload "$wallpaper"
+        hyprctl hyprpaper wallpaper ",$wallpaper"
+        hyprctl hyprpaper unload all
+    fi
+}
+
+# set immediately on start
+set_wallpaper
+
+# then rotate on interval
+while true; do
+    sleep "$INTERVAL"
+    set_wallpaper
+done
