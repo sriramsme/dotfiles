@@ -54,3 +54,13 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 # Starship prompt
 eval "$(starship init bash)"
+
+# pnpm
+export PNPM_HOME="/home/sri/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+. "$HOME/.local/share/../bin/env"

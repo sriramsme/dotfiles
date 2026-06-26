@@ -30,3 +30,7 @@ export TERMINAL=ghostty
 # Locale
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
