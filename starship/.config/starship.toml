@@ -1,0 +1,61 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Single line, no blank line before prompt
+add_newline = false
+
+format = """
+$directory$git_branch$git_status$nodejs$python$rust$golang$cmd_duration$status $character"""
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold blue"
+
+[git_branch]
+format = " [$symbol$branch]($style)"
+symbol = " "
+style = "bold yellow"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold red"
+conflicted = "!"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+modified = "~"
+staged = "+"
+deleted = "-"
+
+[nodejs]
+format = " [node $version]($style)"
+style = "bold green"
+detect_files = ["package.json"]
+
+[python]
+format = " [py $version]($style)"
+style = "bold yellow"
+
+[rust]
+format = " [rs $version]($style)"
+style = "bold orange"
+
+[golang]
+format = " [go $version]($style)"
+style = "bold cyan"
+
+[cmd_duration]
+min_time = 2_000
+format = " [${duration}]($style)"
+style = "dimmed white"
+
+[status]
+disabled = false
+format = '[$status]($style) '
+style = "bold red"
+success_symbol = ""
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
