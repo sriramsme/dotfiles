@@ -56,8 +56,8 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("[workspace 1 silent] zen-browser")
   hl.exec_cmd("[workspace 2 silent] ghostty")
   hl.exec_cmd("mako")
+  hl.exec_cmd("$HOME/bin/wallpaper-rotate")
   hl.exec_cmd("hyprpaper")
-  hl.exec_cmd("wallpaper-rotate")
 end)
 
 
