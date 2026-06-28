@@ -264,6 +264,7 @@ hl.device({
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local shiftSuperMod = "SHIFT + SUPER"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
@@ -277,10 +278,10 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -318,8 +319,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- Screenshots
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("bash -c 'sleep 0.1 && grimblast --notify copy area'"))
-hl.bind("SUPER + SHIFT + F", hl.dsp.exec_cmd("grimblast --notify copy screen"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(shiftSuperMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Clipboard
 hl.exec_cmd("wl-paste --type text --watch cliphist store")
@@ -327,8 +329,7 @@ hl.exec_cmd("wl-paste --type image --watch cliphist store")
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("bash -c 'cliphist list | wofi --dmenu | cliphist decode | wl-copy'"))
 
 -- Lock
-hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
-
+hl.bind(shiftSuperMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 
 ---- WINDOWS AND WORKSPACES ----

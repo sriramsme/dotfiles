@@ -40,7 +40,7 @@ window#waybar {
     margin-left: 16px;
 }
 #cpu {
-    padding: 0 10px;
+    padding: 0 5px;
     color: #bebebe;
 }
 
@@ -52,11 +52,10 @@ window#waybar {
     color: #d35f5f;
 }
 #pulseaudio,
-#backlight,
 #network,
 #battery,
 #clock {
-    padding: 0 10px;
+    padding: 0 5px;
     color: #bebebe;
 }
 

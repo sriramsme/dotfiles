@@ -4,9 +4,9 @@
     "height": 32,
     "spacing": 4,
 
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["cpu", "pulseaudio", "backlight", "network", "battery", "clock"],
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["cpu", "pulseaudio", "network", "battery", "clock"],
 
     "hyprland/workspaces": {
         "format": "{id}",
