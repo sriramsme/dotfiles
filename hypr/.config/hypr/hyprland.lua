@@ -58,6 +58,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("mako")
   hl.exec_cmd("$HOME/bin/wallpaper-rotate")
   hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("blueman-applet")
 end)
 
 
@@ -98,14 +99,14 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
     general = {
         gaps_in  = 2,
-        gaps_out = 10,
+        gaps_out = 8,
 
-        border_size = 2,
+        border_size = 1,
 
-        col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
-        },
+col = {
+    active_border   = "rgba(e68e0dee)",
+    inactive_border = "rgba(00000000)",
+},
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = false,
@@ -270,7 +271,8 @@ local shiftSuperMod = "SHIFT + SUPER"
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("systemctl poweroff"))
+hl.bind(shiftSuperMod .. " + M", hl.dsp.exec_cmd("systemctl reboot"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
@@ -330,6 +332,9 @@ hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("bash -c 'cliphist list | wofi --dm
 
 -- Lock
 hl.bind(shiftSuperMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+
+-- Bluetooth
+hl.bind(shiftSuperMod .. " + B", hl.dsp.exec_cmd("blueman-manager"))
 
 
 ---- WINDOWS AND WORKSPACES ----
