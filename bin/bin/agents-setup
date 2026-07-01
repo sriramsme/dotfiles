@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+AGENTS_FILE="$HOME/.config/agents/AGENTS.md"
+
+if [ ! -f "$AGENTS_FILE" ]; then
+    echo "Error: $AGENTS_FILE not found. Stow the agents package first."
+    exit 1
+fi
+
+echo "Setting up agent symlinks..."
+
+# claude
+mkdir -p "$HOME/.claude"
+ln -sf "$AGENTS_FILE" "$HOME/.claude/CLAUDE.md"
+echo "✓ Claude → $AGENTS_FILE"
+
+# codex
+mkdir -p "$HOME/.codex"
+ln -sf "$AGENTS_FILE" "$HOME/.codex/AGENTS.md"
+echo "✓ Codex → $AGENTS_FILE"
+
+# opencode
+mkdir -p "$HOME/.config/opencode"
+ln -sf "$AGENTS_FILE" "$HOME/.config/opencode/AGENTS.md"
+echo "✓ Opencode → $AGENTS_FILE"
+
+echo "Done!"

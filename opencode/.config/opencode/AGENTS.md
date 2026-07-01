@@ -1,0 +1,1 @@
+/home/sri/.config/agents/AGENTS.md

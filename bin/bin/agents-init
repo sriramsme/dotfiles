@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ ! -f AGENTS.md ]; then
+    echo "# Project Agent Instructions" > AGENTS.md
+    echo "Created AGENTS.md"
+fi
+
+ln -sf AGENTS.md CLAUDE.md
+echo "Symlinked CLAUDE.md → AGENTS.md"
