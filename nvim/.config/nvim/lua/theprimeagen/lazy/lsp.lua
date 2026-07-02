@@ -14,21 +14,23 @@ return {
     "j-hui/fidget.nvim",
     "rafamadriz/friendly-snippets", -- optional snippets
   },
-
   config = function()
     -- Conform setup
     require("conform").setup({
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "black" },
+        python = { "ruff_format" },
         rust = { "rustfmt" },
         typescript = { "prettier" },
         javascript = { "prettier" },
         css = { "prettier" },
         go = { "gofmt" },
-      }
+      },
+      format_on_save = {
+        timeout_ms = 1000,
+        lsp_fallback = true,
+      },
     })
-
     -- CMP capabilities
     local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
@@ -38,10 +40,8 @@ return {
         vim.lsp.protocol.make_client_capabilities(),
         cmp_lsp.default_capabilities()
     )
-
     -- Fidget (LSP status)
     require("fidget").setup({})
-
     -- Mason setup
     require("mason").setup()
     require("mason-lspconfig").setup({
@@ -49,6 +49,7 @@ return {
         "lua_ls",
         "rust_analyzer",
         "pyright",
+        "ruff",       -- Added: Ruff LSP for linting/import-sorting
         "ts_ls",
         "tailwindcss",
         "clangd",
@@ -75,6 +76,24 @@ return {
             }
           }
         end,
+        -- Pyright: type checking, go-to-def, hover
+        -- Import sorting is disabled here since Ruff handles that
+        ["pyright"] = function()
+          require("lspconfig").pyright.setup({
+            capabilities = capabilities,
+            settings = {
+              pyright = {
+                disableOrganizeImports = true,
+              },
+            },
+          })
+        end,
+        -- Ruff: linting + import sorting (formatting is handled by conform above)
+        ["ruff"] = function()
+          require("lspconfig").ruff.setup({
+            capabilities = capabilities,
+          })
+        end,
         -- TailwindCSS
         ["tailwindcss"] = function()
           require("lspconfig").tailwindcss.setup({
@@ -93,7 +112,6 @@ return {
         end,
       }
     })
-
     -- CMP configuration
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
     cmp.setup({
@@ -116,7 +134,6 @@ return {
         { name = 'path' },
       }),
     })
-
     -- Diagnostics config
     vim.diagnostic.config({
       float = {
@@ -130,4 +147,3 @@ return {
     })
   end
 }
-
