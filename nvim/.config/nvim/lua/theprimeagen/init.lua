@@ -19,7 +19,7 @@ local ThePrimeagenGroup = augroup('ThePrimeagen', {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
-vim.api.nvim_set_hl(0, "Normal",   { bg = "NONE" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
 
 function R(name)
@@ -43,7 +43,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = ThePrimeagenGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
@@ -64,7 +64,7 @@ autocmd('BufEnter', {
 autocmd("ColorScheme", {
     group = ThePrimeagenGroup,
     callback = function()
-        vim.api.nvim_set_hl(0, "Normal",   { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
         vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
     end,
 })
@@ -84,6 +84,14 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     end
+})
+
+autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true -- wraps at word boundaries, not mid-word
+    end,
 })
 
 vim.g.netrw_browse_split = 0
