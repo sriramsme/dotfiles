@@ -86,6 +86,12 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ---
 
+## 5. UI/UX
+
+- Descriptions: Do not add subtitles, helper text, or descriptive copy beneath headings, labels, cards or settings by default.
+  prefer one concise , self-explanatory headeing or label. Only add supporting copy when user explicitly asks for it or
+  when it is necessary to prevent misunderstanding or error, and never use it to restate the heading.
+
 ## Conventions
 
 - No em dash (—). Use a plain dash (-).

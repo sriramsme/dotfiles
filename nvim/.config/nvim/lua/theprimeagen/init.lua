@@ -90,7 +90,8 @@ autocmd("FileType", {
     pattern = "markdown",
     callback = function()
         vim.opt_local.wrap = true
-        vim.opt_local.linebreak = true -- wraps at word boundaries, not mid-word
+        vim.opt_local.linebreak = true   -- wraps at word boundaries, not mid-word
+        vim.opt_local.foldenable = false -- don't auto-fold sections on entry/mode change
     end,
 })
 
