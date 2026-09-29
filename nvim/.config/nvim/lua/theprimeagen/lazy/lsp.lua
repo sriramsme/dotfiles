@@ -102,6 +102,25 @@ return {
                         filetypes = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact" },
                     })
                 end,
+                -- ts_ls: scope root_dir tightly (stop climbing into parent/monorepo dirs)
+                -- and disable dynamic file watching, which otherwise watches node_modules
+                -- and is the most common cause of ts_ls hanging on large projects.
+                ["ts_ls"] = function()
+                    local ts_capabilities = vim.deepcopy(capabilities)
+                    ts_capabilities.workspace = ts_capabilities.workspace or {}
+                    ts_capabilities.workspace.didChangeWatchedFiles = { dynamicRegistration = false }
+
+                    require("lspconfig").ts_ls.setup({
+                        capabilities = ts_capabilities,
+                        root_dir = require("lspconfig").util.root_pattern(
+                            "tsconfig.json",
+                            "jsconfig.json",
+                            "package.json",
+                            ".git"
+                        ),
+                        single_file_support = false,
+                    })
+                end,
                 -- Zig (optional)
                 ["zls"] = function()
                     require("lspconfig").zls.setup({

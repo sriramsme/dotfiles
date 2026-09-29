@@ -93,3 +93,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+vim.keymap.set("n", "<leader>tc", function()
+    require("supermaven-nvim.api").toggle()
+    vim.notify("Supermaven toggled")
+end, { desc = "Toggle Supermaven" })

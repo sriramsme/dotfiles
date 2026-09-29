@@ -37,6 +37,12 @@ alias t='tmux attach || tmux new-session'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# Bluetooth aliases
+alias bt-connect='bluetoothctl connect 2C:BE:EE:F4:6C:93'
+alias bt-disconnect='bluetoothctl disconnect 2C:BE:EE:F4:6C:93'
+alias bt-connect1='bluetoothctl connect 5C:44:3E:0E:0B:F8'
+alias bt-disconnect1='bluetoothctl disconnect 5C:44:3E:0E:0B:F8'
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ]             && \. "$NVM_DIR/nvm.sh"
