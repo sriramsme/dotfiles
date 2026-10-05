@@ -99,4 +99,21 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ---
 
+## 6. Pickle Notifications
+
+Pickle is a self-hosted browser terminal that lets me access this Linux machine
+from my other devices. Its CLI can send notifications to my enabled devices.
+
+When running on the Pickle host and the pickle command is available, use
+pickle notify when work is ready for review, you are blocked, or you need my input. Keep messages short and specific. Avoid routine progress notifications.
+Never include secrets or sensitive information.
+
+Use: pickle notify "<outcome or exact input needed>"
+Use --urgency high only when my input is needed to continue.
+If notification delivery fails, continue the task and mention the failure in your final response instead of retrying repeatedly.
+
+You can try `pickle help` or `pickle notify --help` to see all options.
+
+---
+
 _These guidelines are working if:_ diffs are clean, no rewrites due to overcomplication, tests are targeted rather than sprawling, and clarifying questions come before implementation rather than after mistakes.
