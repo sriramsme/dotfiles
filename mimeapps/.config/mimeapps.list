@@ -18,3 +18,4 @@ application/x-extension-shtml=zen.desktop
 application/x-extension-xht=zen.desktop
 application/x-extension-xhtml=zen.desktop
 application/xhtml+xml=zen.desktop
+x-scheme-handler/codex=chatgpt.desktop

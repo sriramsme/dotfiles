@@ -17,18 +17,31 @@
 - Flat, readable code over abstraction layers.
 - Names describe what a thing _is_, not how it's implemented.
 
+## Engineering Context
+
+- My primary background is software engineering, systems development, and applied AI.
+- I am expanding into embedded systems, computer engineering, robotics, controls, and hardware/software integration.
+- Treat me as an experienced software engineer, not necessarily an experienced electrical engineer.
+- For unfamiliar technical domains, explain underlying principles and tradeoffs when relevant, not just implementation steps.
+- Favor first-principles reasoning, documentation, measurement, and evidence over assumptions.
+- Respect the current project's domain. Do not introduce hardware, AI, or other technologies merely because they align with my interests.
+- Read relevant project-level instructions and context documents before making architectural decisions.
+
 ---
 
 ## 1. Think Before Coding
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+**Reason independently. Surface material uncertainty. Challenge bad assumptions.**
 
 Before implementing:
 
-- State assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop and ask.
+- Understand the intended outcome, existing architecture, and relevant constraints.
+- State material assumptions explicitly.
+- When multiple approaches are viable, explain meaningful tradeoffs and recommend one.
+- If a simpler approach achieves the same outcome, say so.
+- Make reasonable, reversible implementation decisions independently.
+- Ask when ambiguity materially affects behavior, architecture, interfaces, cost, safety, or irreversible decisions.
+- Do not guess at external contracts, unfamiliar hardware interfaces, or undocumented behavior. Verify them.
 
 ## 2. Simplicity First
 
@@ -37,8 +50,8 @@ Before implementing:
 - No features beyond what was asked.
 - No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If it could be 50 lines instead of 200, rewrite it.
+- No speculative defensive code. Handle realistic failure modes, particularly at external boundaries.
+- Prefer the smaller implementation when it is equally clear, correct, and maintainable.
 
 Ask: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
@@ -79,8 +92,11 @@ For multi-step tasks, state a brief plan:
 
 - Write the minimum tests that prove the change works - not exhaustive coverage, not speculative edge cases nobody asked about.
 - One targeted test beats a rewritten test suite.
-- If a test won't pass after 2-3 attempts, stop and surface it - don't keep burning cycles rewriting it.
 - Don't restructure existing test files as a side effect of an unrelated change (see Surgical Changes).
+- Match verification depth to risk. Routine application changes need focused tests; critical paths, hardware interfaces, and irreversible operations warrant stronger validation.
+- Distinguish simulated, mocked, and theoretical verification from testing on actual hardware.
+- Never report unexecuted tests, assumed behavior, or expected results as verified.
+- If repeated attempts fail, investigate the underlying cause rather than cycling through speculative fixes. Surface genuine blockers with evidence.
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
