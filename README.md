@@ -43,6 +43,25 @@ After installing Claude Code, Codex and Opencode:
 agents-setup
 ```
 
+## Personal skills
+
+Keep your own reusable workflows in `.agents/skills/<skill-name>/SKILL.md`.
+Each `SKILL.md` starts with YAML frontmatter containing `name` and `description`,
+followed by the workflow instructions. Add scripts or references only when needed.
+
+`agents-setup` links `~/.agents/skills` to this repo's `.agents/skills`, making
+these skills available to Codex across projects. It leaves an existing skills
+directory or a link to another location untouched and asks you to merge it first.
+
+On another machine, clone the dotfiles, Stow `bin` and `agents`, then run
+`agents-setup`. Commit and push skill changes to sync them through Git.
+
+In Codex CLI or the IDE extension, invoke a skill with `$skill-name`. Codex can
+also select it when a request matches its description. Keep workflows specific
+to a project in that project's `.agents/skills` instead.
+
+Reference: [OpenAI skills documentation](https://learn.chatgpt.com/docs/build-skills).
+
 ## Key bindings (Hyprland)
 
 | Key | Action |

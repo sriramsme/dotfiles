@@ -7,6 +7,27 @@ if [ ! -f "$AGENTS_FILE" ]; then
     exit 1
 fi
 
+# Resolve this script through its Stow symlink to find the dotfiles repo.
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+DOTFILES_DIR="$(dirname "$(dirname "$(dirname "$SCRIPT_PATH")")")"
+SKILLS_DIR="$DOTFILES_DIR/.agents/skills"
+
+if [ ! -d "$SKILLS_DIR" ]; then
+    echo "Error: $SKILLS_DIR not found."
+    exit 1
+fi
+
+if [ -e "$HOME/.agents/skills" ] || [ -L "$HOME/.agents/skills" ]; then
+    if [ "$(readlink -f "$HOME/.agents/skills")" != "$SKILLS_DIR" ]; then
+        echo "Error: $HOME/.agents/skills already exists. Move or merge it before running agents-setup."
+        exit 1
+    fi
+fi
+
+mkdir -p "$HOME/.agents" || exit 1
+ln -sfnT "$SKILLS_DIR" "$HOME/.agents/skills" || exit 1
+echo "Skills: $HOME/.agents/skills -> $SKILLS_DIR"
+
 echo "Setting up agent symlinks..."
 
 # claude

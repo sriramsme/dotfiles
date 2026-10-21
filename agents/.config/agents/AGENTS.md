@@ -108,6 +108,13 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
   prefer one concise , self-explanatory headeing or label. Only add supporting copy when user explicitly asks for it or
   when it is necessary to prevent misunderstanding or error, and never use it to restate the heading.
 
+## Dotfiles and Reproducible Setup
+
+- Treat `~/projects/dotfiles` as the source of truth for my personal development configuration and reusable personal skills. Inspect its existing layout and setup instructions before making related changes.
+- Edit the dotfiles source and maintain the corresponding Stow package or setup script so the change can be recreated on another machine. Document any required dependencies or manual steps.
+- Keep reusable personal skills in the dotfiles repo's `.agents/skills/`, exposed through `~/.agents/skills`. Check for an existing relevant skill before creating another. Keep project-specific skills and configuration in their project.
+- Use portable paths and keep secrets, credentials, and machine-specific state outside tracked dotfiles.
+
 ## Conventions
 
 - No em dash (—). Use a plain dash (-).
